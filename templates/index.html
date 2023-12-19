@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration System</title>
+</head>
+<body>
+
+    <h1>Events</h1>
+     <!-- Search Form -->
+    <form method="GET" action="{{ url_for('index') }}">
+        <label for="search">Search:</label>
+        <input type="text" name="search" id="search" placeholder="Enter event name or date">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{{ url_for('event_details', event_id=event.id) }}">
+                    {{ event.name }} - {{ event.date_time }} - {{ event.location }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+    <p>Admins, enhance your events! <a href="/importer">Click here</a> to add more.</p>
+    <p>Not an admin yet? <a href="{{ url_for('signup') }}">Sign up</a> to get started.</p>
+</body>
+</html>

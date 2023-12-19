@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.name }} Details</title>
+</head>
+<body>
+    <h1>{{ event.name }} Details</h1>
+    {% if event.image_path %}
+        <img src="{{ url_for('static', filename='images/' + event.image_path) }}" alt="{{ event.name }} Image">
+    {% else %}
+        <p>No image available</p>
+    {% endif %}
+
+
+
+    <p>Date and Time: {{ event.date_time }}</p>
+    <p>Location: {{ event.location }}</p>
+    <p>Description: {{ event.description }}</p>
+    <p>Max Participants: {{ event.max_participants }}</p>
+
+    <h2>Participants</h2>
+    <ul>
+        {% for participant in event.participants %}
+            <li>{{ participant.first_name }} {{ participant.last_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('register', event_id=event.id) }}">Register</a>
+</body>
+</html>

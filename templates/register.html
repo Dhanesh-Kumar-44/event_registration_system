@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for {{ event.name }}</title>
+</head>
+<body>
+    <h1>Register for {{ event.name }}</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <label for="first_name">First Name:</label>
+<!--        {{ form.first_name.label }}-->
+        {{ form.first_name(size=20) }}
+        <br>
+        <label for="last_name">Last Name:</label>
+<!--        {{ form.last_name.label }}-->
+        {{ form.last_name(size=20) }}
+        <br>
+        <label for="profile_picture">Profile Picture:</label>
+        {{ form.profile_picture() }}
+        <br>
+        <label for="email">Email Address:</label>
+        {{ form.email() }}
+        <br>
+
+        <label for="phone_number">Phone Number:</label>
+        {{ form.phone_number() }}
+        <br>
+        <br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
